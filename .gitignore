@@ -1,3 +1,6 @@
 images/
 annotations.json
 __pycache__/
+a.py
+b.py
+mnist/
