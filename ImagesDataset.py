@@ -25,7 +25,7 @@ class et(Dataset):
         return images,annotations
     def __getitem__(self, idx):
 
-        images_list,annotations_list=self.load_data_from_json(r'Z:\CNN\annotations.json')
+        images_list,annotations_list=self.load_data_from_json(r'annotations.json')
 
         img_path = os.path.join(self.img_dir, self.img_filenames[idx])
         image = Image.open(img_path).convert('RGB')
