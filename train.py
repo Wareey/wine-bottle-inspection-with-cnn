@@ -18,9 +18,9 @@ train_dataset = et(img_dir=r'Z:\CNN\images', transform=transform)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 
 # 假设您已经有了数据加载器 train_loader
-for inputs, labels in train_loader:
-    inputs = inputs.cuda()
-    labels = labels.cuda()
+# for inputs, labels in train_loader:
+#     inputs = inputs.cuda()
+#     labels = labels.cuda()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = CNN(num_class=11).to(device)
@@ -30,9 +30,11 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 num_epochs = 2  # 训练的轮数
 
-print(f"{device}")
+print(torch.cuda.is_available())
 for epoch in range(num_epochs):
     for i, (image, label) in enumerate(train_loader):
+        image ,label= image.to('cuda'),label.to('cuda')
+        
         outputs = model(image)
         print(f"{outputs.size()}*****{label.size()}")
         loss = criterion(outputs,label)
