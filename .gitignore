@@ -4,3 +4,4 @@ __pycache__/
 a.py
 b.py
 mnist/
+targetfolder_*
