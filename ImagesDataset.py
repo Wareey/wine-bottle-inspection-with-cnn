@@ -8,10 +8,11 @@ import numpy as np
 
 
 class et(Dataset):
-    def __init__(self, img_dir, transform=None):
+    def __init__(self, img_dir,ca_id,transform=None):
         self.img_dir = img_dir
         self.transform = transform
         self.img_filenames = [f for f in os.listdir(img_dir) if f.endswith('.jpg')]
+        self.ca_id=ca_id
     
     def __len__(self):
         return len(self.img_filenames)
@@ -34,12 +35,14 @@ class et(Dataset):
             if i.file_name ==self.img_filenames[idx]:
                 id=i.id
                 break
+        label=0
         for i in annotations_list:
-            if i.image_id==id:
-                label=i.category_id
+            if i.image_id==id and i.category_id==self.ca_id:
+                label=1
+
                 # print("来自函数__getitem__")
                 # print(f"********************************{label}******************")
-                break
+
                 
 
         if self.transform:
