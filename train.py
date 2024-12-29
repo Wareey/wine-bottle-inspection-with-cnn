@@ -70,7 +70,7 @@ def main():
     num_epochsA = 1  # 训练的轮数
 
     device=torch.device("cpu")
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     transform = transforms.Compose([
         transforms.Resize((224, 224)),  
@@ -157,7 +157,7 @@ def main():
     for epoch in range(num_epochsA):
         for i, (image, label) in enumerate(tqdm(train_loader1)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model1(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -176,6 +176,7 @@ def main():
     with torch.no_grad():
         for data in test_loader1:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model1(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -190,7 +191,7 @@ def main():
     for epoch in range(num_epochsA):
         for i, (image, label) in enumerate(tqdm(train_loader2)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model2(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -208,6 +209,7 @@ def main():
     with torch.no_grad():
         for data in test_loader2:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model2(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -222,7 +224,7 @@ def main():
     for epoch in range(num_epochsA):
         for i, (image, label) in enumerate(tqdm(train_loader3)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model3(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -240,6 +242,7 @@ def main():
     with torch.no_grad():
         for data in test_loader3:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model3(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -254,7 +257,7 @@ def main():
     for epoch in range(num_epochsA):
         for i, (image, label) in enumerate(tqdm(train_loader4)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model4(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -272,6 +275,7 @@ def main():
     with torch.no_grad():
         for data in test_loader4:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model4(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -286,7 +290,7 @@ def main():
     for epoch in range(num_epochsA):
         for i, (image, label) in enumerate(tqdm(train_loader5)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model5(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -304,6 +308,7 @@ def main():
     with torch.no_grad():
         for data in test_loader5:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model5(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -319,7 +324,7 @@ def main():
     for epoch in range(num_epochs):
         for i, (image, label) in enumerate(tqdm(train_loader6)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model6(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -338,6 +343,7 @@ def main():
     with torch.no_grad():
         for data in test_loader6:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model6(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -352,7 +358,7 @@ def main():
     for epoch in range(num_epochs):
         for i, (image, label) in enumerate(tqdm(train_loader7)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model7(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -371,6 +377,7 @@ def main():
     with torch.no_grad():
         for data in test_loader7:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model7(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -385,7 +392,7 @@ def main():
     for epoch in range(num_epochs):
         for i, (image, label) in enumerate(tqdm(train_loader8)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model8(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -404,6 +411,7 @@ def main():
     with torch.no_grad():
         for data in test_loader8:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model8(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -418,7 +426,7 @@ def main():
     for epoch in range(num_epochsA):
         for i, (image, label) in enumerate(tqdm(train_loader9)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model9(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -436,6 +444,7 @@ def main():
     with torch.no_grad():
         for data in test_loader9:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model9(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
@@ -450,7 +459,7 @@ def main():
     for epoch in range(num_epochsA):
         for i, (image, label) in enumerate(tqdm(train_loader10)):
             # image ,label= image.to('cuda'),label.to('cuda')
-            # image ,label= image.to(device),label.to(device)
+            image ,label= image.to(device),label.to(device)
 
             outputs = model10(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -468,6 +477,7 @@ def main():
     with torch.no_grad():
         for data in test_loader10:
             images, labels = data
+            images, labels = images.to(device), labels.to(device)
             outputs = model10(images)
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
