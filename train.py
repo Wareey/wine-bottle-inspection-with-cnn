@@ -507,7 +507,7 @@ def main():
     level=logging.INFO,  # 日志级别
     format='%(asctime)s - %(levelname)s - %(message)s'  # 日志格式
     )
-    logging.info(f'标贴学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
+    logging.info(f'标贴模型学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
     logging.info(f'瑕疵6 测试集准确率{A6}')
     logging.info(f'瑕疵7 测试集准确率{A7}')
     logging.info(f'瑕疵8 测试集准确率{A8}')
