@@ -488,15 +488,16 @@ def main():
     A10= 100 * correct / total
 
 
-    print(f'学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
+    print(f'标贴模型学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
+    print(f'瑕疵6 测试集准确率{A6}')
+    print(f'瑕疵7 测试集准确率{A7}')
+    print(f'瑕疵8 测试集准确率{A8}')
+    print(f'瓶盖模型学习率为{learning_rateA} 训练了{num_epochsA}轮  随机翻转率{fanzhuanPA}')
     print(f'瑕疵1 测试集准确率{A1}')
     print(f'瑕疵2 测试集准确率{A2}')
     print(f'瑕疵3 测试集准确率{A3}')
     print(f'瑕疵4 测试集准确率{A4}')
     print(f'瑕疵5 测试集准确率{A5}')
-    print(f'瑕疵6 测试集准确率{A6}')
-    print(f'瑕疵7 测试集准确率{A7}')
-    print(f'瑕疵8 测试集准确率{A8}')
     print(f'瑕疵9 测试集准确率{A9}')
     print(f'瑕疵10 测试集准确率{A10}')
     
@@ -506,15 +507,16 @@ def main():
     level=logging.INFO,  # 日志级别
     format='%(asctime)s - %(levelname)s - %(message)s'  # 日志格式
     )
-    logging.info(f'学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
+    logging.info(f'标贴学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
+    logging.info(f'瑕疵6 测试集准确率{A6}')
+    logging.info(f'瑕疵7 测试集准确率{A7}')
+    logging.info(f'瑕疵8 测试集准确率{A8}')
+    logging.info(f'瓶盖模型学习率为{learning_rateA} 训练了{num_epochsA}轮  随机翻转率{fanzhuanPA}')
     logging.info(f'瑕疵1 测试集准确率{A1}')
     logging.info(f'瑕疵2 测试集准确率{A2}')
     logging.info(f'瑕疵3 测试集准确率{A3}')
     logging.info(f'瑕疵4 测试集准确率{A4}')
     logging.info(f'瑕疵5 测试集准确率{A5}')
-    logging.info(f'瑕疵6 测试集准确率{A6}')
-    logging.info(f'瑕疵7 测试集准确率{A7}')
-    logging.info(f'瑕疵8 测试集准确率{A8}')
     logging.info(f'瑕疵9 测试集准确率{A9}')
     logging.info(f'瑕疵10 测试集准确率{A10}')
 
