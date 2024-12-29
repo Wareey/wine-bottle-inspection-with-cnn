@@ -11,10 +11,12 @@ import random
 from datetime import datetime
 from PIL import Image
 import numpy as np
+import logging
+
 def is_size(image_path):
     with Image.open(image_path) as img:
         return img.size == (658,492)
-def data_split():
+def data_split():#分割数据集
     source_folder = 'images'
     # 目标文件夹路径
     target_folder_1 = 'targetfolder_1_'
@@ -59,12 +61,17 @@ def data_split():
 
     return target_folder_1A, target_folder_1B,target_folder_2A,target_folder_2B
 def main():
+    learning_rate = 0.001  # 学习率
+    fanzhuanP=0.66  # 随机水平翻转
+    num_epochs = 1  # 训练的轮数
+
     device=torch.device("cpu")
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     transform = transforms.Compose([
         transforms.Resize((224, 224)),  
         transforms.ToTensor(),  
-        transforms.RandomHorizontalFlip(p=0.3),  # 随机水平翻转
+        transforms.RandomHorizontalFlip(p=fanzhuanP),  # 随机水平翻转
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),  # 标准化
     ])
     t1A,t1B,t2A,t2B=data_split()
@@ -93,18 +100,14 @@ def main():
     model8=CNN(num_class=2).to(device)
 
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model6.parameters(), lr=0.001)
-
-    num_epochs = 1 # 训练的轮数
+    optimizer = torch.optim.Adam(model6.parameters(), lr=learning_rate)
 
     print(torch.cuda.is_available())
     for epoch in range(num_epochs):
         for i, (image, label) in enumerate(tqdm(train_loader6)):
             # image ,label= image.to('cuda'),label.to('cuda')
+            # image ,label= image.to(device),label.to(device)
 
             outputs = model6(image)
             # print(f"{output6.size()}*****{label.size()}")
@@ -128,8 +131,89 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochs}轮')
-    print('Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型6 Accuracy of the network on the 10000 test images: %d %%' % (
     100 * correct / total))
+    A6= 100 * correct / total
 
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model7.parameters(), lr=learning_rate)
+    for epoch in range(num_epochs):
+        for i, (image, label) in enumerate(tqdm(train_loader7)):
+            # image ,label= image.to('cuda'),label.to('cuda')
+            # image ,label= image.to(device),label.to(device)
+
+            outputs = model7(image)
+            # print(f"{output6.size()}*****{label.size()}")
+            loss = criterion(outputs,label)
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if (i+1) % 10 == 0:
+                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader7)}], Loss: {loss.item():.4f}')
+    
+    model7.eval()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for data in test_loader7:
+            images, labels = data
+            outputs = model7(images)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+    print(f'训练了{num_epochs}轮')
+    print('类型 7 Accuracy of the network on the 10000 test images: %d %%' % (
+    100 * correct / total))
+    A7 = 100 * correct / total
+
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model8.parameters(), lr=learning_rate)
+    for epoch in range(num_epochs):
+        for i, (image, label) in enumerate(tqdm(train_loader8)):
+            # image ,label= image.to('cuda'),label.to('cuda')
+            # image ,label= image.to(device),label.to(device)
+
+            outputs = model8(image)
+            # print(f"{output6.size()}*****{label.size()}")
+            loss = criterion(outputs,label)
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if (i+1) % 10 == 0:
+                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader8)}], Loss: {loss.item():.4f}')
+    
+    model8.eval()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for data in test_loader8:
+            images, labels = data
+            outputs = model8(images)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+    print(f'训练了{num_epochs}轮')
+    print('类型 8 Accuracy of the network on the 10000 test images: %d %%' % (
+    100 * correct / total))
+    A8= 100 * correct / total
+
+    print(f'学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
+    print(f'瑕疵6 测试集准确率{A6}')
+    print(f'瑕疵7 测试集准确率{A7}')
+    print(f'瑕疵8 测试集准确率{A8}')
+    
+    logging.basicConfig(
+    filename='train.log',  # 日志文件名
+    level=logging.INFO,  # 日志级别
+    format='%(asctime)s - %(levelname)s - %(message)s'  # 日志格式
+    )
+    logging.info(f'学习率为{learning_rate} 训练了{num_epochs}轮  随机翻转率{fanzhuanP}')
+    logging.info(f'瑕疵6 测试集准确率{A6}')
+    logging.info(f'瑕疵7 测试集准确率{A7}')
+    logging.info(f'瑕疵8 测试集准确率{A8}')
 if __name__ == '__main__':
     main()

@@ -5,3 +5,4 @@ a.py
 b.py
 mnist/
 targetfolder_*
+train.log
