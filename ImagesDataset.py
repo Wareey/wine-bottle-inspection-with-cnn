@@ -39,7 +39,8 @@ class et(Dataset):
         for i in annotations_list:
             if i.image_id==id and i.category_id==self.ca_id:
                 label=1
-
+            elif label==1:
+                break
                 # print("来自函数__getitem__")
                 # print(f"********************************{label}******************")
 
