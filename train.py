@@ -63,11 +63,11 @@ def data_split():#分割数据集
 def main():
     learning_rate = 0.001  # 学习率
     fanzhuanP=0.66  # 随机水平翻转
-    num_epochs = 1  # 训练的轮数
+    num_epochs = 15  # 训练的轮数
 
-    learning_rateA = 0.001  # 学习率
+    learning_rateA = 0.00088  # 学习率
     fanzhuanPA=0.66  # 随机水平翻转
-    num_epochsA = 1  # 训练的轮数
+    num_epochsA = 9  # 训练的轮数
 
     device=torch.device("cpu")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -168,7 +168,7 @@ def main():
             optimizer.step()
 
             if (i+1) % 10 == 0:
-                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader1)}], Loss: {loss.item():.4f}')
+                print(f'Epoch [{epoch+1}/{num_epochsA}], Step [{i+1}/{len(train_loader1)}], Loss: {loss.item():.4f}')
     
     model1.eval()
     correct = 0
@@ -182,7 +182,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochsA}轮')
-    print('类型1 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型1 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A1= 100 * correct / total
 
@@ -201,7 +201,7 @@ def main():
             optimizer.step()
 
             if (i+1) % 10 == 0:
-                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader2)}], Loss: {loss.item():.4f}')
+                print(f'Epoch [{epoch+1}/{num_epochsA}], Step [{i+1}/{len(train_loader2)}], Loss: {loss.item():.4f}')
     
     model2.eval()
     correct = 0
@@ -215,7 +215,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochsA}轮')
-    print('类型2 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型2 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A2= 100 * correct / total
 
@@ -234,7 +234,7 @@ def main():
             optimizer.step()
 
             if (i+1) % 10 == 0:
-                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader3)}], Loss: {loss.item():.4f}')
+                print(f'Epoch [{epoch+1}/{num_epochsA}], Step [{i+1}/{len(train_loader3)}], Loss: {loss.item():.4f}')
     
     model3.eval()
     correct = 0
@@ -248,7 +248,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochsA}轮')
-    print('类型3 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型3 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A3= 100 * correct / total
 
@@ -267,7 +267,7 @@ def main():
             optimizer.step()
 
             if (i+1) % 10 == 0:
-                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader4)}], Loss: {loss.item():.4f}')
+                print(f'Epoch [{epoch+1}/{num_epochsA}], Step [{i+1}/{len(train_loader4)}], Loss: {loss.item():.4f}')
     
     model4.eval()
     correct = 0
@@ -281,7 +281,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochsA}轮')
-    print('类型4 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型4 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A4= 100 * correct / total
 
@@ -300,7 +300,7 @@ def main():
             optimizer.step()
 
             if (i+1) % 10 == 0:
-                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader5)}], Loss: {loss.item():.4f}')
+                print(f'Epoch [{epoch+1}/{num_epochsA}], Step [{i+1}/{len(train_loader5)}], Loss: {loss.item():.4f}')
     
     model5.eval()
     correct = 0
@@ -314,7 +314,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochsA}轮')
-    print('类型5 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型5 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A5= 100 * correct / total
 
@@ -349,7 +349,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochs}轮')
-    print('类型6 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型6 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A6= 100 * correct / total
 
@@ -383,7 +383,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochs}轮')
-    print('类型 7 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型 7 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A7 = 100 * correct / total
 
@@ -417,7 +417,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochs}轮')
-    print('类型 8 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型 8 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A8= 100 * correct / total
 
@@ -436,7 +436,7 @@ def main():
             optimizer.step()
 
             if (i+1) % 10 == 0:
-                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader9)}], Loss: {loss.item():.4f}')
+                print(f'Epoch [{epoch+1}/{num_epochsA}], Step [{i+1}/{len(train_loader9)}], Loss: {loss.item():.4f}')
     
     model9.eval()
     correct = 0
@@ -450,7 +450,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochsA}轮')
-    print('类型9 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型9 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A9= 100 * correct / total
 
@@ -469,7 +469,7 @@ def main():
             optimizer.step()
 
             if (i+1) % 10 == 0:
-                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(train_loader10)}], Loss: {loss.item():.4f}')
+                print(f'Epoch [{epoch+1}/{num_epochsA}], Step [{i+1}/{len(train_loader10)}], Loss: {loss.item():.4f}')
     
     model10.eval()
     correct = 0
@@ -483,7 +483,7 @@ def main():
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     print(f'训练了{num_epochsA}轮')
-    print('类型10 Accuracy of the network on the 10000 test images: %d %%' % (
+    print('类型10 Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
     A10= 100 * correct / total
 
