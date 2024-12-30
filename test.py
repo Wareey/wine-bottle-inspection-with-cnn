@@ -1,7 +1,7 @@
 import json
 from image import image
 from annotation import annotation
-#统计数据集数据
+#简单统计数据集数据
 with open('annotations.json', 'r') as file:
     data = json.load(file)
     images = [image(p['file_name'], p['id'],p['height'],p['width']) for p in data['images']]

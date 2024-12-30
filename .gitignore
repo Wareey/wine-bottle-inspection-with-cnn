@@ -7,3 +7,4 @@ mnist/
 *folder*/
 c.py
 *.log
+*.pth
