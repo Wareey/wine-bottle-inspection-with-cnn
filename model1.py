@@ -14,51 +14,6 @@ import numpy as np
 import logging
 from train import is_size
 
-def data_split():#分割数据集
-    source_folder = 'images'
-    # 目标文件夹路径
-    target_folder_1 = 'targetfolder_1_'
-    target_folder_2 = 'targetfolder_2_'
-    now = datetime.now()
-    formatted_time = now.strftime("%H%M%S")
-    target_folder_1A = target_folder_1 + formatted_time +"A"
-    target_folder_1B = target_folder_1 + formatted_time +"B"
-    target_folder_2A = target_folder_2 + formatted_time +"A"
-    target_folder_2B = target_folder_2 + formatted_time +"B"
-    # 确保目标文件夹存在，如果不存在则创建
-    os.makedirs(target_folder_1A, exist_ok=True)
-    os.makedirs(target_folder_1B, exist_ok=True)
-    os.makedirs(target_folder_2A, exist_ok=True)
-    os.makedirs(target_folder_2B, exist_ok=True)
-
-    images = [os.path.join(source_folder, f) for f in os.listdir(source_folder) if os.path.isfile(os.path.join(source_folder, f))]
-
-
-    print(len(images))
-    # 随机打乱图片列表
-    random.shuffle(images)
-
-    # 根据比例4:1分割图片列表
-    split_index = int(len(images) * 4 / 5)
-    images_1 = images[:split_index]
-    images_2 = images[split_index:]
-
-    # 分别复制图片到两个目标文件夹
-    for img in images_1:
-        if is_size(img):
-            shutil.copy(img, target_folder_1A)
-        else:
-            shutil.copy(img, target_folder_1B)
-
-    for img in images_2:
-        if is_size(img):
-            shutil.copy(img, target_folder_2A)
-        else:
-            shutil.copy(img, target_folder_2B)
-
-
-    return target_folder_1A, target_folder_1B,target_folder_2A,target_folder_2B
-
 def train(ca_id,learning_rate, fanzhuanP, num_epochs):
     # learning_rate = 0.001  # 学习率
     # fanzhuanP=0.66  # 随机水平翻转
@@ -72,7 +27,7 @@ def train(ca_id,learning_rate, fanzhuanP, num_epochs):
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),  # 标准化
     ])
 
-    t1A,t1B,t2A,t2B=data_split()
+    t1A,t1B,t2A,t2B='TrainFolderA','TrainFolderB','YanZhengFolderA','YanZhengFolderB'
     #t1A为瓶盖训练集
     #t1B为标签训练集
 

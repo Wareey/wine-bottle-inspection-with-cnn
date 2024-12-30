@@ -4,6 +4,6 @@ __pycache__/
 a.py
 b.py
 mnist/
-targetfolder_*
+*folder*/
 c.py
 *.log
