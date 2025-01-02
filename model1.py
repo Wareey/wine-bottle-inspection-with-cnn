@@ -134,7 +134,7 @@ def TrainAgain(modelpth,learning_rate, ca_id, fanzhuanP):
     test_loader1 = DataLoader(test_dataset1, batch_size=32, shuffle=True)
 
     # 继续训练第11轮
-    for epoch in range(start_epoch + 1, start_epoch + 2):
+    for epoch in range(start_epoch , start_epoch +1):
         for i, (image, label) in enumerate(tqdm(train_loader1)):
             # image ,label= image.to('cuda'),label.to('cuda')
             image ,label= image.to(device),label.to(device)
@@ -153,14 +153,7 @@ def TrainAgain(modelpth,learning_rate, ca_id, fanzhuanP):
     model.eval()
     correct = 0
     total = 0
-    with torch.no_grad():
-        for data in test_loader1:
-            images, labels = data
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
+++++++++++++++++++++++++++++++++++++++++++++
     print(f'训练了{start_epoch + 1}轮')
     print(f'类型{ca_id} Accuracy of the network on the test images: %d %%' % (
     100 * correct / total))
@@ -186,6 +179,20 @@ if __name__ == '__main__':
     # for i in range(7, 15):
     #     train(ca_id=1, learning_rate=0.00088, num_epochs=i, fanzhuanP=0.5)
 
-    a=TrainAgain(modelpth=train(ca_id=1, learning_rate=0.00088,  fanzhuanP=0.5,num_epochs=1),ca_id=1, learning_rate=0.00088, fanzhuanP=0.5)
-    b=TrainAgain(modelpth=a,ca_id=1, learning_rate=0.00088,  fanzhuanP=0.5)
-    c=TrainAgain(modelpth=b,ca_id=1, learning_rate=0.00088,  fanzhuanP=0.5)
+ #   a=TrainAgain(modelpth=train(ca_id=2, learning_rate=0.00018,  fanzhuanP=0.66,num_epochs=12),ca_id=2, learning_rate=0.00018, fanzhuanP=0.66)
+
+
+    a=TrainAgain(modelpth=train(ca_id=3, learning_rate=0.003,  fanzhuanP=0.66,num_epochs=3),ca_id=3, learning_rate=0.003, fanzhuanP=0.66)
+    b=TrainAgain(modelpth=a,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    c=TrainAgain(modelpth=b,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    d=TrainAgain(modelpth=c,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    e=TrainAgain(modelpth=d,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    f=TrainAgain(modelpth=e,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    g=TrainAgain(modelpth=f,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    h=TrainAgain(modelpth=g,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    i=TrainAgain(modelpth=h,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    j=TrainAgain(modelpth=i,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    k=TrainAgain(modelpth=j,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+    l=TrainAgain(modelpth=k,ca_id=3, learning_rate=0.003,  fanzhuanP=0.66)
+
+    
